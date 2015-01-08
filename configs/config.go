@@ -1,5 +1,9 @@
 package configs
 
+import (
+	"github.com/docker/libcontainer/security/seccomp"
+)
+
 type Rlimit struct {
 	Type int    `json:"type"`
 	Hard uint64 `json:"hard"`
@@ -104,4 +108,7 @@ type Config struct {
 	// SystemProperties is a map of properties and their values. It is the equivalent of using
 	// sysctl -w my.property.name value in Linux.
 	SystemProperties map[string]string `json:"system_properties"`
+
+	// SeccompConfig holds information on system calls to be restricted in the container
+	SeccompConfig seccomp.Config `json:"seccomp_config,omitempty"`
 }
